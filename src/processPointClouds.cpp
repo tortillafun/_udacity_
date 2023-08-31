@@ -42,13 +42,14 @@ typename pcl::PointCloud<PointT>::Ptr ProcessPointClouds<PointT>::FilterCloud(ty
     region.setMin(minPoint);
     region.setMax(maxPoint);
     region.setInputCloud(cloudFiltered);
+    region.filter(*cloudRegion);
     
     std::vector<int> indices;
 
     pcl::CropBox<PointT> roof(true);
     roof.setMin(Eigen::Vector4f(-1.5,-1.7,-1,1));
     roof.setMax(Eigen::Vector4f(2.6,1.7,-.4,1));
-    roof.setInputCloud(cloudRegion);
+    roof.setInputCloud(cloudRegion); // burasi
     roof.filter(indices);
 
     pcl::PointIndices::Ptr inliers{new pcl::PointIndices};
@@ -56,7 +57,7 @@ typename pcl::PointCloud<PointT>::Ptr ProcessPointClouds<PointT>::FilterCloud(ty
         inliers->indices.push_back(point);
 
     pcl::ExtractIndices<PointT> extract;
-    extract.setInputCloud(cloudRegion);
+    extract.setInputCloud(cloudRegion); // burasi
     extract.setIndices(inliers);
     extract.setNegative(true);
     extract.filter(*cloudRegion);
