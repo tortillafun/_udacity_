@@ -76,6 +76,19 @@ void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer)
 
 
 }
+
+//stream icin cityBlock
+
+void cityBlock(pcl::visualization::PCLVisualizer::Ptr& viewer,ProcessPointClouds<pcl::PointXYZI>* pointProcessorI, const pcl::PointCloud<pcl::PointXYZI>::Ptr & inputCloud)
+{
+
+
+
+
+}
+
+
+
 void simpleHighway(pcl::visualization::PCLVisualizer::Ptr& viewer)
 {
     // ----------------------------------------------------
@@ -130,6 +143,9 @@ int main (int argc, char** argv)
     pcl::visualization::PCLVisualizer::Ptr viewer (new pcl::visualization::PCLVisualizer ("3D Viewer"));
     CameraAngle setAngle = XY;
     initCamera(setAngle, viewer);
+
+
+
     //simpleHighway(viewer);
     cityBlock(viewer);
     while (!viewer->wasStopped ())
